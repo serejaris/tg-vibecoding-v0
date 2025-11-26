@@ -1,141 +1,136 @@
-# Telegram Mini Apps Next.js Template
+# Vibecoding AI UI Generator
 
-This template demonstrates how developers can implement a web application on the
-Telegram Mini Apps platform using the following technologies and libraries:
+Telegram Mini App built with Next.js that uses AI to generate user interfaces from text descriptions. This is a modern web application running inside Telegram that integrates TON Connect for wallet functionality.
 
-- [Next.js](https://nextjs.org/)
-- [TypeScript](https://www.typescriptlang.org/)
-- [TON Connect](https://docs.ton.org/develop/dapps/ton-connect/overview)
-- [@telegram-apps SDK](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk/2-x)
-- [Telegram UI](https://github.com/Telegram-Mini-Apps/TelegramUI)
+## Features
 
-> The template was created using [pnpm](https://pnpm.io/). Therefore, it is
-> required to use it for this project as well. Using other package managers, you
-> will receive a corresponding error.
+- **AI UI Generator**: Describe any interface in plain text and AI will generate it for you
+- **TON Connect Integration**: Connect and interact with TON blockchain wallets
+- **Telegram Mini App SDK**: Full integration with Telegram Mini Apps platform
+- **Multi-language Support**: Internationalization (English and Russian)
+- **Theme Support**: Automatically adapts to Telegram's light/dark themes
+- **TypeScript**: Full type safety across the codebase
 
-## Install Dependencies
+## Tech Stack
 
-If you have just cloned this template, you should install the project
-dependencies using the command:
+- [Next.js 15](https://nextjs.org/) - React framework
+- [TypeScript](https://www.typescriptlang.org/) - Type safety
+- [TON Connect](https://docs.ton.org/develop/dapps/ton-connect/overview) - Wallet integration
+- [@telegram-apps SDK](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk/2-x) - Telegram integration
+- [Telegram UI](https://github.com/Telegram-Mini-Apps/TelegramUI) - UI components
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [next-intl](https://next-intl-docs.vercel.app/) - Internationalization
 
-```Bash
+> **Important**: This project uses [pnpm](https://pnpm.io/) exclusively. Do not use npm or yarn.
+
+## Getting Started
+
+### Installation
+
+```bash
 pnpm install
 ```
 
-## Scripts
+### Development
 
-This project contains the following scripts:
-
-- `dev`. Runs the application in development mode.
-- `dev:https`. Runs the application in development mode using self-signed SSL
-  certificate.
-- `build`. Builds the application for production.
-- `start`. Starts the Next.js server in production mode.
-- `lint`. Runs [eslint](https://eslint.org/) to ensure the code quality meets
-  the required
-  standards.
-
-To run a script, use the `pnpm run` command:
-
-```Bash
-pnpm run {script}
-# Example: pnpm run build
-```
-
-## Create Bot and Mini App
-
-Before you start, make sure you have already created a Telegram Bot. Here is
-a [comprehensive guide](https://docs.telegram-mini-apps.com/platform/creating-new-app)
-on how to do it.
-
-## Run
-
-Although Mini Apps are designed to be opened
-within [Telegram applications](https://docs.telegram-mini-apps.com/platform/about#supported-applications),
-you can still develop and test them outside of Telegram during the development
-process.
-
-To run the application in the development mode, use the `dev` script:
-
+For local development outside Telegram:
 ```bash
 pnpm run dev
 ```
 
-After this, you will see a similar message in your terminal:
-
+For testing inside Telegram (requires HTTPS):
 ```bash
-▲ Next.js 14.2.3
-- Local:        http://localhost:3000
-
-✓ Starting...
-✓ Ready in 2.9s
+pnpm run dev:https
 ```
 
-To view the application, you need to open the `Local`
-link (`http://localhost:3000` in this example) in your browser.
+Then submit `https://127.0.0.1:3000` to @BotFather (not localhost).
 
-It is important to note that some libraries in this template, such as
-`@telegram-apps/sdk`, are not intended for use outside of Telegram.
-
-Nevertheless, they appear to function properly. This is because the
-`src/hooks/useTelegramMock.ts` file, which is imported in the application's
-`Root` component, employs the `mockTelegramEnv` function to simulate the
-Telegram environment. This trick convinces the application that it is
-running in a Telegram-based environment. Therefore, be cautious not to use this
-function in production mode unless you fully understand its implications.
-
-### Run Inside Telegram
-
-Although it is possible to run the application outside of Telegram, it is
-recommended to develop it within Telegram for the most accurate representation
-of its real-world functionality.
-
-To run the application inside Telegram, [@BotFather](https://t.me/botfather)
-requires an HTTPS link.
-
-This template already provides a solution.
-
-To retrieve a link with the HTTPS protocol, consider using the `dev:https`
-script:
+### Production Build
 
 ```bash
-$ pnpm run dev:https
-
-▲ Next.js 14.2.3
-- Local:        https://localhost:3000
-
-✓ Starting...
-✓ Ready in 2.4s
+pnpm run build
+pnpm start
 ```
 
-Visiting the `Local` link (`https://localhost:3000` in this example) in your
-browser, you will see the following warning:
+### Code Quality
 
-![SSL Warning](assets/ssl-warning.png)
+```bash
+pnpm run lint
+```
 
-This browser warning is normal and can be safely ignored as long as the site is
-secure. Click the `Proceed to localhost (unsafe)` button to continue and view
-the application.
+## Project Structure
 
-Once the application is displayed correctly, submit the
-link `https://127.0.0.1:3000` (`https://localhost:3000` is considered as invalid
-by BotFather) as the Mini App link to [@BotFather](https://t.me/botfather).
-Then, navigate to [https://web.telegram.org/k/](https://web.telegram.org/k/),
-find your bot, and launch the Telegram Mini App. This approach provides the full
-development experience.
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── page.tsx           # Home page with feature links
+│   ├── generate/          # AI UI Generator page
+│   ├── preview/           # Preview generated UI
+│   ├── ton-connect/       # TON wallet integration demo
+│   ├── init-data/         # Display Telegram user data
+│   ├── launch-params/     # Display launch parameters
+│   └── theme-params/      # Display theme parameters
+├── components/            # React components
+├── core/
+│   ├── init.ts           # SDK initialization
+│   └── i18n/             # Internationalization (en, ru)
+└── mockEnv.ts            # Development environment mocking
+```
 
-## Deploy
+## How It Works
 
-The easiest way to deploy your Next.js app is to use
-the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme)
-from the creators of Next.js.
+### AI UI Generator
+1. User enters a description of the UI they want (e.g., "A todo list with dark theme")
+2. AI processes the description and generates HTML/CSS/JS code
+3. Generated UI is displayed in a preview page
+4. User can view and interact with the generated interface
 
-Check out
-the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for
-more details.
+### Architecture Highlights
 
-## Useful Links
+- **Client-side Rendering**: Most components use `'use client'` directive for Telegram compatibility
+- **Environment Mocking**: Development environment is mocked when running outside Telegram
+- **Responsive Design**: Tailwind CSS + Telegram UI components for consistent styling
+- **Multi-language**: Supports English and Russian with auto-detection from Telegram user settings
+- **Theme Support**: Automatically adapts to Telegram's light/dark theme
 
-- [Platform documentation](https://docs.telegram-mini-apps.com/)
-- [@telegram-apps/sdk-react documentation](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk-react)
-- [Telegram developers community chat](https://t.me/devs)
+## Setup with Telegram
+
+1. Create a Telegram bot using [@BotFather](https://t.me/botfather) - [guide](https://docs.telegram-mini-apps.com/platform/creating-new-app)
+2. For development, use `pnpm run dev:https` to get an HTTPS link
+3. Submit `https://127.0.0.1:3000` to @BotFather (not localhost)
+4. Open [Telegram Web](https://web.telegram.org/k/), find your bot, and launch the Mini App
+
+## Testing Outside Telegram
+
+You can develop and test the app locally:
+```bash
+pnpm run dev
+```
+Open `http://localhost:3000` in your browser.
+
+**Note**: The Telegram environment is mocked in development (`src/mockEnv.ts`), so SDK calls work even outside Telegram.
+
+## Deployment
+
+Recommended platforms for deploying this Mini App:
+
+- **[Vercel](https://vercel.com/)** - Easiest option, optimized for Next.js
+- **[Railway](https://railway.app/)** - Simple deployment with good free tier
+- **[Render](https://render.com/)** - Reliable hosting option
+- **[Fly.io](https://fly.io/)** - Global distribution
+
+After deployment:
+1. Update the Mini App URL in [@BotFather](https://t.me/botfather) with your production URL
+2. Update the manifest at `public/tonconnect-manifest.json` with your app's URL and metadata
+
+## Resources
+
+- [Telegram Mini Apps Documentation](https://docs.telegram-mini-apps.com/)
+- [Telegram Apps SDK React](https://docs.telegram-mini-apps.com/packages/telegram-apps-sdk-react)
+- [Next.js Documentation](https://nextjs.org/docs)
+- [TON Connect Documentation](https://docs.ton.org/develop/dapps/ton-connect/overview)
+- [Telegram Developers Community](https://t.me/devs)
+
+## License
+
+MIT
