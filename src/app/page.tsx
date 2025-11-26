@@ -16,6 +16,19 @@ export default function Home() {
     <Page back={false}>
       <List>
         <Section
+          header="AI UI Generator"
+          footer="Describe any interface and AI will generate it for you"
+        >
+          <Link href="/generate">
+            <Cell
+              before={<span style={{ fontSize: '24px' }}>✨</span>}
+              subtitle="Create UI from text description"
+            >
+              Generate UI
+            </Cell>
+          </Link>
+        </Section>
+        <Section
           header="Features"
           footer="You can use these pages to learn more about features, provided by Telegram Mini Apps and other useful projects"
         >
