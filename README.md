@@ -1,3 +1,31 @@
+<!-- hq-readme-ru: 2026-05-09 -->
+# tg-vibecoding-v0
+
+Коротко: Telegram-проект или бот по теме «tg vibecoding v0».
+
+## Что здесь
+
+- Назначение: Telegram-проект или бот по теме «tg vibecoding v0».
+- Основной стек: TypeScript.
+- Видимость: публичный репозиторий.
+- Статус: активный репозиторий; актуальность проверять по issues и последним коммитам.
+
+## Где смотреть работу
+
+- Задачи и текущие решения: GitHub Issues этого репозитория.
+- Код и материалы: файлы в корне и профильные папки проекта.
+- Связь с HQ: если проект влияет на продукт, контент или воронку, сверяйте канон в `0_hq` и репозитории-владельце.
+
+## Для агентов
+
+- Сначала прочитайте этот README и открытые issues.
+- Не переносите сюда канон соседних проектов без ссылки на источник.
+- Перед правками проверьте существующие scripts, package.json/pyproject и локальные инструкции.
+
+---
+
+## Исходный README
+
 # Vibecoding AI UI Generator
 
 Telegram Mini App built with Next.js that uses AI to generate user interfaces from text descriptions. This is a modern web application running inside Telegram that integrates TON Connect for wallet functionality.
